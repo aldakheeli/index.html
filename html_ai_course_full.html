@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HTML & AI Course</title>
+  <style>
+    :root {
+      --primary: #1f4e79;
+      --secondary: #2b7a78;
+      --accent: #f4b400;
+      --bg: #f7fafc;
+      --text: #1f2937;
+      --white: #ffffff;
+      --muted: #6b7280;
+      --card-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: auto;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: var(--white);
+      padding-bottom: 60px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.96rem;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      align-items: center;
+      padding: 38px 0 0;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1.15;
+      margin: 0 0 18px;
+    }
+
+    .hero p {
+      font-size: 1.08rem;
+      max-width: 640px;
+      margin-bottom: 22px;
+      color: rgba(255,255,255,0.94);
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: var(--radius);
+      padding: 24px;
+      backdrop-filter: blur(6px);
+      box-shadow: var(--card-shadow);
+    }
+
+    .hero-card h3 {
+      margin-top: 0;
+      margin-bottom: 14px;
+    }
+
+    .hero-card ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.25s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #111827;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.5);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      opacity: 0.95;
+    }
+
+    section {
+      padding: 70px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 14px;
+      font-size: 2rem;
+      color: var(--primary);
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--muted);
+      max-width: 760px;
+      margin: 0 auto 38px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 22px;
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--card-shadow);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: var(--primary);
+    }
+
+    .course-outline .card {
+      border-top: 5px solid var(--secondary);
+    }
+
+    .highlight {
+      background: linear-gradient(135deg, #eef7ff, #eefcf8);
+    }
+
+    .job-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .job-item {
+      background: #f8fbff;
+      border-left: 5px solid var(--accent);
+      padding: 16px;
+      border-radius: 12px;
+    }
+
+    .lesson-list {
+      padding-left: 20px;
+      margin: 0;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-top: 30px;
+    }
+
+    .stat {
+      background: var(--white);
+      border-radius: 16px;
+      text-align: center;
+      padding: 20px 12px;
+      box-shadow: var(--card-shadow);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.8rem;
+      color: var(--secondary);
+    }
+
+    .cta {
+      background: linear-gradient(135deg, var(--secondary), var(--primary));
+      color: var(--white);
+      text-align: center;
+      border-radius: 28px;
+      padding: 46px 24px;
+      box-shadow: var(--card-shadow);
+    }
+
+    .cta h2 {
+      margin-top: 0;
+      font-size: 2rem;
+    }
+
+    .footer {
+      background: #0f172a;
+      color: #cbd5e1;
+      padding: 24px 0;
+      text-align: center;
+      font-size: 0.95rem;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      color: var(--white);
+      padding: 7px 14px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      margin-bottom: 18px;
+    }
+
+    .contact-box p {
+      margin: 8px 0;
+    }
+
+    @media (max-width: 900px) {
+      .hero,
+      .grid-3,
+      .grid-2,
+      .job-list,
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">HTML & AI Course</div>
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#benefits">Benefits</a>
+          <a href="#outline">Course Outline</a>
+          <a href="#audience">Who Is It For?</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+
+      <div class="hero">
+        <div>
+          <span class="badge">Start Building Your Digital Future</span>
+          <h1>Learn HTML and AI in a Simple, Practical, Job-Focused Way</h1>
+          <p>
+            This course introduces beginners to HTML as the foundation of web development,
+            while also showing how AI tools can speed up coding, improve productivity,
+            and help learners build real pages for study, freelance work, and job applications.
+          </p>
+          <div class="btn-group">
+            <a class="btn btn-primary" href="#outline">View Course Content</a>
+            <a class="btn btn-secondary" href="#contact">Join the Course</a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <h3>What students will gain</h3>
+          <ul>
+            <li>Understand the structure of web pages using HTML</li>
+            <li>Create simple and attractive personal or business pages</li>
+            <li>Use AI to generate, improve, and explain code</li>
+            <li>Build a portfolio page that supports job opportunities</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">About the Course</h2>
+      <p class="section-subtitle">
+        HTML is one of the most useful entry points into the digital world. Whether you are a student,
+        teacher, engineer, freelancer, or job seeker, learning how web pages work can help you present
+        your work professionally and open new paths in the job market.
+      </p>
+
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>Simple Learning Path</h3>
+          <p>
+            The course starts from zero. No programming background is required.
+            Lessons are explained in a clear way with practical examples.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Practical Approach</h3>
+          <p>
+            Students will not only study concepts, but also build pages step by step,
+            test them in the browser, and see real results.
+          </p>
+        </div>
+        <div class="card">
+          <h3>AI Support</h3>
+          <p>
+            Learners will discover how AI tools can help write HTML faster,
+            correct mistakes, and suggest better page structure and content.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="benefits" class="highlight">
+    <div class="container">
+      <h2 class="section-title">Why This Skill Matters for Jobs</h2>
+      <p class="section-subtitle">
+        Learning HTML gives you more than a technical skill. It gives you a way to present yourself,
+        your services, and your ideas professionally in a digital environment.
+      </p>
+
+      <div class="job-list">
+        <div class="job-item">
+          <strong>Create your own portfolio website</strong>
+          <p>Show your CV, projects, certificates, and achievements in a professional online format.</p>
+        </div>
+        <div class="job-item">
+          <strong>Support freelancing opportunities</strong>
+          <p>Use web basics to offer simple page design, landing pages, and content formatting services.</p>
+        </div>
+        <div class="job-item">
+          <strong>Improve office and business work</strong>
+          <p>Create internal pages, announcements, simple forms, and digital content for institutions.</p>
+        </div>
+        <div class="job-item">
+          <strong>Stand out in the job market</strong>
+          <p>Employers value candidates who can work with technology and adapt to digital tools.</p>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><strong>0</strong> Prior coding experience needed</div>
+        <div class="stat"><strong>100%</strong> Beginner friendly</div>
+        <div class="stat"><strong>1</strong> Real webpage built by each learner</div>
+        <div class="stat"><strong>AI</strong> Assisted coding and learning</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="outline" class="course-outline">
+    <div class="container">
+      <h2 class="section-title">Course Outline</h2>
+      <p class="section-subtitle">
+        The course is designed as a basic training program that combines web fundamentals with practical AI use.
+      </p>
+
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>Module 1: Introduction to HTML</h3>
+          <ul class="lesson-list">
+            <li>What is HTML?</li>
+            <li>How websites work</li>
+            <li>Basic page structure</li>
+            <li>Creating your first page</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Module 2: Core HTML Elements</h3>
+          <ul class="lesson-list">
+            <li>Headings and paragraphs</li>
+            <li>Links and images</li>
+            <li>Lists and tables</li>
+            <li>Organizing page content</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Module 3: Forms and User Input</h3>
+          <ul class="lesson-list">
+            <li>Form basics</li>
+            <li>Text fields and buttons</li>
+            <li>Email and password input</li>
+            <li>Simple validation concepts</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Module 4: Introduction to AI</h3>
+          <ul class="lesson-list">
+            <li>What AI means in simple terms</li>
+            <li>How AI helps developers</li>
+            <li>Using AI tools responsibly</li>
+            <li>Examples of AI in web development</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Module 5: HTML with AI Tools</h3>
+          <ul class="lesson-list">
+            <li>Generating HTML with AI</li>
+            <li>Fixing code errors</li>
+            <li>Improving content and structure</li>
+            <li>Writing effective prompts</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Module 6: Mini Project</h3>
+          <ul class="lesson-list">
+            <li>Building a personal webpage</li>
+            <li>Adding professional content</li>
+            <li>Publishing the project</li>
+            <li>Using it for learning or job applications</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="audience">
+    <div class="container">
+      <h2 class="section-title">Who Is This Course For?</h2>
+      <p class="section-subtitle">
+        This course is suitable for anyone who wants to start learning digital skills in a practical and useful way.
+      </p>
+
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>Students</h3>
+          <p>Students who want to build modern technical skills and create online academic or personal pages.</p>
+        </div>
+        <div class="card">
+          <h3>Job Seekers</h3>
+          <p>People who want to improve their digital profile and present themselves better to employers.</p>
+        </div>
+        <div class="card">
+          <h3>Professionals & Freelancers</h3>
+          <p>Anyone interested in presenting services, projects, or business information through a clean webpage.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="cta">
+        <h2>Build Your First Web Page and Start Expanding Your Opportunities</h2>
+        <p>
+          Learning HTML is a small step that can lead to bigger digital skills, better self-presentation,
+          and stronger job opportunities. Adding AI to this journey makes learning faster and more practical.
+        </p>
+        <a class="btn btn-primary" href="#contact">Enroll or Contact Now</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title">Contact / Registration</h2>
+      <p class="section-subtitle">
+        Replace the details below with your own name, phone number, email, social media links, or registration form.
+      </p>
+
+      <div class="grid grid-2">
+        <div class="card contact-box">
+          <h3>Instructor Information</h3>
+          <p><strong>Name:</strong> Dr. Hussein Al-Dakheeli</p>
+          <p><strong>Email:</strong> your-email@example.com</p>
+          <p><strong>Phone:</strong> +964 XXX XXX XXXX</p>
+          <p><strong>Location:</strong> Iraq</p>
+        </div>
+        <div class="card contact-box">
+          <h3>How to Join</h3>
+          <p>Update this section with your registration method.</p>
+          <p>You can add a Google Form link, WhatsApp number, or class schedule here.</p>
+          <p><strong>Example:</strong> Seats are limited. Register early to reserve your place.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      © 2026 HTML & AI Course. All rights reserved.
+    </div>
+  </footer>
+</body>
+</html>
